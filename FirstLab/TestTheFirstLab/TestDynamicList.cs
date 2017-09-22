@@ -10,10 +10,21 @@ namespace TestTheFirstLab
         private const int ELEMENT_COUNT = 10;
 
         private DynamicList<int> list;
+        private DynamicList<TestClass> _list;
 
         public void Init()
         {
             list = new DynamicList<int>();
+            _list = new DynamicList<TestClass>();
+        }
+
+        [TestMethod]
+        public void TestObjectElement()
+        {
+            Init();
+            TestClass test = new TestClass(10);
+            _list.Add(test);
+            Assert.AreEqual(_list[0], test);
         }
 
         [TestMethod]
@@ -118,17 +129,7 @@ namespace TestTheFirstLab
             Assert.AreEqual(0, list.Count);
         }
 
-        [TestMethod]
-        public void TestSetGet()
-        {
-            Init();
-            for (int i = 0; i < ELEMENT_COUNT; i++)
-                list.Add(i);
 
-            list[3] = 3;
-            list.Remove(0);
-            Assert.AreEqual(4, list[3]);
-        }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]

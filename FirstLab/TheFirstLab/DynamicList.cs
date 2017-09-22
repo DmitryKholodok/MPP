@@ -114,6 +114,8 @@ namespace FirstLab
             return true;
         }
 
+        // find item position in the array and return the number
+        // or -1 if there is no such a element
         private int GetItemPosInArr(T item)
         {
             return Array.IndexOf(arr, item, 0, 1);            
