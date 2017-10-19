@@ -38,7 +38,7 @@ namespace Lab5.Entity
 
         public string Namespace { get; set; }
         public string ClassName { get; set; }
-        public List<string> Inheritors { get; set; }
+        public List<string> Inheritances { get; set; }
         public List<SimpleField> SimpleFields { get; set; }
         public List<LinkField> LinkFields { get; set; }
         public List<Method> Methods { get; set; }

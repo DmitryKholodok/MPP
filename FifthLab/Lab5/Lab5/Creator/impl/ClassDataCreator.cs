@@ -9,7 +9,6 @@ namespace Lab5.Creator
     public class ClassDataCreator : ICreator
     {
         CreatorManager manager;
-        const string APPROPRIATE_ATTR = "ExportXML";
         const BindingFlags BF  = 
             (BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
 
@@ -32,7 +31,7 @@ namespace Lab5.Creator
             ClassData classData = new ClassData();
             classData.Namespace = IdentifyNamespace(type);
             classData.ClassName = IdentifyClassName(type);
-            classData.Inheritors = IdentifyInheritances(type);
+            classData.Inheritances = IdentifyInheritances(type);
             classData.Methods = IdentifyMethods(type);
             FillClassFields(classData, type);
             return classData;
@@ -78,7 +77,10 @@ namespace Lab5.Creator
                     {
                         listSF.Add(FillSimpleField(field));
                     }
-                    listLF.Add(FillLinkField(field, (ClassData)cd));
+                    else
+                    {
+                        listLF.Add(FillLinkField(field, (ClassData)cd));
+                    }
                 }
                 else
                 {
@@ -116,7 +118,13 @@ namespace Lab5.Creator
             {
                 list.Add(interf.ToString());
             }
-            // add classes
+            foreach(var t in manager.Types)
+            {
+                if (type.IsSubclassOf(t))
+                {
+                    list.Add(t.ToString());
+                }
+            }
             return list;
         }
 
